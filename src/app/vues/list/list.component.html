@@ -1,0 +1,48 @@
+
+<div class="secton-header">
+    <h1>Liste</h1>
+    <a routerLink="/">Retour</a>
+</div>
+
+<form [formGroup]="entityForm" (submit)="newItem()">
+<table>
+    <thead>
+        <tr>
+            <th 
+                *ngFor="
+                    let attr of itemAttributes; 
+                    let last = last " 
+                    [attr.colspan]=" last? 3: null ">
+                {{ attr.name }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of itemCollection ">
+            <td *ngFor="let attr of itemAttributes">
+                {{ item[attr.key] }}
+            </td>
+            <td>
+                <button (click)="goToDetails(item.id, $event)">
+                    <svg-details-icon></svg-details-icon>
+                </button>
+            </td>
+            <td>
+                <button (click)="deleteItem(item.id, $event)">
+                    <svg-delete-icon></svg-delete-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td *ngFor="let attr of itemAttributes">
+                <input [attr.type]=" attr.type?attr.type:'text' " placeholder="{{ attr.name }} ..." formControlName="{{ attr.key }}" form="entityForm">
+            </td>
+            <td colspan="2">
+                <input type="submit" value="Ajouter">
+            </td>
+        </tr>
+    </tfoot>
+</table>
+</form>

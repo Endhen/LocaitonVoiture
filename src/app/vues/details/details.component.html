@@ -1,0 +1,28 @@
+
+<div class="secton-header">
+    <h1>Titre</h1>
+    <a routerLink="/">Retour</a>
+</div>
+
+<table>
+<tbody>
+    <tr *ngFor=" let attr of itemAttributes" >
+        <th >
+            {{ attr.name }}
+        </th>
+        <td>
+            <input type="{{ attr.type?attr.type:'text' }}" value="{{ attr.value }}">
+        </td>
+    </tr>
+</tbody>
+<tfoot>
+    <tr>
+        <td>
+            <input type="submit" value="Sauvegarder">
+        </td>
+        <td>
+            <button>Réservation</button>
+        </td>
+    </tr>
+</tfoot>
+</table>
